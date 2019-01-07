@@ -1,0 +1,20 @@
+vagrant@vagrant:/vagrant/Logs_Analysis$ python Logs_analysis.py
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+
+1. The three most popular articles of all time are:
+
+Candidate is jerk, alleges rival -- 338647 views
+Bears love berries, alleges bear -- 253801 views
+Bad things gone, say good people -- 170098 views
+
+2. The most popular article authors of all time are:
+
+Ursula La Multa -- 507594 views
+Rudolf von Treppenwitz -- 423457 views
+Anonymous Contributor -- 170098 views
+Markoff Chaney -- 84557 views
+
+3. The Days on which more than 1% of requests lead to errors are:
+
+2016-07-17 -- 2.26% errors

@@ -1,0 +1,46 @@
+SQL statements associated with the Logs Analysis Udacity Project:
+
+
+1. What are the most popular three articles of all time?
+
+a. View plus query on view
+
+CREATE OR REPLACE VIEW popular_article_view AS
+SELECT title, author, COUNT(*) AS views FROM articles, log
+WHERE log.path LIKE CONCAT('%',articles.slug)
+GROUP BY title, author ORDER BY views DESC;
+
+SELECT title, views FROM popular_article_view LIMIT 3;
+
+b. Just single SQL query
+
+SELECT title, COUNT(*) AS views FROM articles, log
+WHERE log.path LIKE CONCAT('%',articles.slug)
+GROUP BY title ORDER BY views desc LIMIT 3;
+
+
+2. Who are the most popular article authors of all time?
+
+CREATE OR REPLACE VIEW popular_article_view AS
+SELECT title, author, COUNT(*) AS views FROM articles, log
+WHERE log.path LIKE CONCAT('%',articles.slug)
+GROUP BY title, author ORDER BY views DESC;
+
+SELECT name, SUM(views) AS views FROM authors, popular_article_view
+WHERE popular_article_view.author = authors.id
+GROUP BY name ORDER BY views DESC;
+
+3. On which days did more than 1% of requests lead to errors?
+
+CREATE OR REPLACE VIEW log_fail_status_count_view AS
+SELECT time::date as date, count(*) as total_fail FROM log
+WHERE status NOT LIKE '%200 OK%' GROUP BY time::date;
+
+CREATE OR REPLACE VIEW log_status_count_view AS
+SELECT time::date as date, count(*) as total FROM log
+GROUP BY time::date; 
+
+SELECT log_status_count_view.date, ROUND((total_fail * 100.0 / total),2) AS error_percent
+FROM log_fail_status_count_view, log_status_count_view
+WHERE log_fail_status_count_view.date = log_status_count_view.date AND
+(total_fail * 100.0 / total) > 1.0;
