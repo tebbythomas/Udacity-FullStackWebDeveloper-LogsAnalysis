@@ -32,9 +32,9 @@ The code was run on a **Linux** platform virtually using **vagrant**.
 **Steps to run:**
 
 Setup the environment and load the database. Then login to the vm, navigate to the vagrant directory and run the code via :
-'''
+```
 $ python3 Logs_analysis.py
-'''
+```
 
 Sample output file:
 
