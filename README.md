@@ -27,6 +27,7 @@ The database called **news** contains the following tables:
 3. On which days did more than 1% of requests lead to errors?
 
 The code is written in **Python 3** and connects to a **PostgreSQL** database via the adapter **psycopg2**.
+The code follows the **PEP8 Python coding style**
 The code was run on a **Linux** platform virtually using **vagrant**.
 
 **Steps to run:**
